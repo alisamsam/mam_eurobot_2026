@@ -17,7 +17,7 @@ class TestPyNode(Node):
         msg = Twist()
         flag_ = False
         if self.count < 10:
-            msg.linear.x = 0.50  # forward velocity
+            msg.linear.x = 0.50  # forward  
             msg.angular.z = 1.57  # angular velocity
             self.get_logger().info('Moving in a circle...')
         else:
