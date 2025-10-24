@@ -1,33 +1,23 @@
 <?xml version="1.0"?>
 <sdf version="1.9">
-  <!-- Floor mat: 2 m (X) x 3 m (Y) x 0.007 m (Z) -->
+  <!-- Aire de jeu 3000 x 2000 mm avec bordures 70 mm (h) x 22 mm (ép) incluses -->
   <model name="floor_mat">
     <static>true</static>
 
     <link name="floor_link">
-      <!-- MAT: collision -->
+      <!-- ===== Tapis (2 x 3 x 0.007 m) ===== -->
       <collision name="mat_collision">
         <geometry>
-          <box>
-            <size>2 3 0.007</size> <!-- 2000mm x 3000mm x 7mm -->
-          </box>
+          <box><size>2 3 0.007</size></box>
         </geometry>
         <surface>
-          <friction>
-            <ode>
-              <mu>0.9</mu>
-              <mu2>0.9</mu2>
-            </ode>
-          </friction>
+          <friction><ode><mu>0.9</mu><mu2>0.9</mu2></ode></friction>
         </surface>
       </collision>
 
-      <!-- MAT: visual -->
       <visual name="mat_visual">
         <geometry>
-          <box>
-            <size>2 3 0.007</size> <!-- 2000mm x 3000mm x 7mm -->
-          </box>
+          <box><size>2 3 0.007</size></box>
         </geometry>
         <material>
           <diffuse>1 1 1 1</diffuse>
@@ -41,48 +31,82 @@
         </material>
       </visual>
 
-      <!-- PLATFORM: 1.8 m (Y) x 0.45 m (X) x 0.055 m (Z)
-           Placée au milieu du grand côté (3 m), côté x = +1.0.
-           Centre Z = (0.007/2) + (0.055/2) = 0.031 m
-           Centre X = + (1.0 - 0.45/2) = +0.775 m
-           Centre Y = 0.0 (centrée sur la moitié du côté)
-      -->
+      <!-- ===== Plateforme (0.45 x 1.8 x 0.055 m) posée sur le tapis ===== -->
+      <!-- Centre Z = 0.0035 + 0.055/2 = 0.031 ; Centre X = 1.0 - 0.45/2 = 0.775 ; Y = 0 -->
       <collision name="platform_collision">
-        <!-- pose: x y z roll pitch yaw -->
         <pose>0.775 0.0 0.031 0 0 0</pose>
         <geometry>
-          <box>
-            <!-- size: X Y Z (X = 0.45, Y = 1.8, Z = 0.055) -->
-            <size>0.45 1.8 0.055</size>
-          </box>
+          <box><size>0.45 1.8 0.055</size></box>
         </geometry>
         <surface>
-          <friction>
-            <ode>
-              <mu>0.9</mu>
-              <mu2>0.9</mu2>
-            </ode>
-          </friction>
+          <friction><ode><mu>0.9</mu><mu2>0.9</mu2></ode></friction>
         </surface>
       </collision>
 
       <visual name="platform_visual">
         <pose>0.775 0.0 0.031 0 0 0</pose>
         <geometry>
-          <box>
-            <size>0.45 1.8 0.055</size>
-          </box>
+          <box><size>0.45 1.8 0.055</size></box>
         </geometry>
         <material>
-          <!-- Couleur légèrement grisée pour différencier visuellement -->
           <diffuse>0.8 0.8 0.8 1</diffuse>
-          <pbr>
-            <metal>
-              <metalness>0.0</metalness>
-              <roughness>0.9</roughness>
-            </metal>
-          </pbr>
+          <pbr><metal><metalness>0.0</metalness><roughness>0.9</roughness></metal></pbr>
         </material>
+      </visual>
+
+      <!-- ===== Bordures (70 mm haut x 22 mm épais) incluses dans 2 x 3 m =====
+           Z centre bordure = haut tapis/2 + hauteur/2 = 0.0035 + 0.070/2 = 0.0385
+           Décalage épaisseur/2 = 0.022/2 = 0.011
+           -> X bordure longues = ±(1.0 - 0.011) = ±0.989  (longueur 3.0 le long de Y)
+           -> Y bordure courtes = ±(1.5 - 0.011) = ±1.489  (longueur 2.0 le long de X)
+      =============================================================== -->
+
+      <!-- Longue +X -->
+      <collision name="border_long_posX_collision">
+        <pose>0.989 0 0.0385 0 0 0</pose>
+        <geometry><box><size>0.022 3.0 0.070</size></box></geometry>
+        <surface><friction><ode><mu>0.9</mu><mu2>0.9</mu2></ode></friction></surface>
+      </collision>
+      <visual name="border_long_posX_visual">
+        <pose>0.989 0 0.0385 0 0 0</pose>
+        <geometry><box><size>0.022 3.0 0.070</size></box></geometry>
+        <material><diffuse>0.15 0.15 0.15 1</diffuse></material>
+      </visual>
+
+      <!-- Longue -X -->
+      <collision name="border_long_negX_collision">
+        <pose>-0.989 0 0.0385 0 0 0</pose>
+        <geometry><box><size>0.022 3.0 0.070</size></box></geometry>
+        <surface><friction><ode><mu>0.9</mu><mu2>0.9</mu2></ode></friction></surface>
+      </collision>
+      <visual name="border_long_negX_visual">
+        <pose>-0.989 0 0.0385 0 0 0</pose>
+        <geometry><box><size>0.022 3.0 0.070</size></box></geometry>
+        <material><diffuse>0.15 0.15 0.15 1</diffuse></material>
+      </visual>
+
+      <!-- Courte +Y -->
+      <collision name="border_short_posY_collision">
+        <pose>0 1.489 0.0385 0 0 0</pose>
+        <geometry><box><size>2.0 0.022 0.070</size></box></geometry>
+        <surface><friction><ode><mu>0.9</mu><mu2>0.9</mu2></ode></friction></surface>
+      </collision>
+      <visual name="border_short_posY_visual">
+        <pose>0 1.489 0.0385 0 0 0</pose>
+        <geometry><box><size>2.0 0.022 0.070</size></box></geometry>
+        <material><diffuse>0.15 0.15 0.15 1</diffuse></material>
+      </visual>
+
+      <!-- Courte -Y -->
+      <collision name="border_short_negY_collision">
+        <pose>0 -1.489 0.0385 0 0 0</pose>
+        <geometry><box><size>2.0 0.022 0.070</size></box></geometry>
+        <surface><friction><ode><mu>0.9</mu><mu2>0.9</mu2></ode></friction></surface>
+      </collision>
+      <visual name="border_short_negY_visual">
+        <pose>0 -1.489 0.0385 0 0 0</pose>
+        <geometry><box><size>2.0 0.022 0.070</size></box></geometry>
+        <material><diffuse>0.15 0.15 0.15 1</diffuse></material>
       </visual>
 
     </link>
