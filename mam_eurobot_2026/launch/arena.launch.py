@@ -44,16 +44,7 @@ def generate_launch_description():
             arguments=['/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist']
         ),
 
-        Node(
-            package='ros_gz_bridge',
-            executable='parameter_bridge',
-            name='camera_bridge',
-            output='screen',
-            arguments=[
-                '/sim/camera/image@sensor_msgs/msg/Image@ignition.msgs.Image',
-                '--ros-args', '-r', '/sim/camera/image:=/camera/image_raw'
-            ]
-        ),
+
         
         Node(
             package='rviz2',
