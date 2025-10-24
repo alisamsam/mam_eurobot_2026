@@ -1,6 +1,9 @@
 ros2 run ros_gz_bridge parameter_bridge   /sim/camera/image@sensor_msgs/msg/Image@ignition.msgs.Image   --ros-args -r /sim/camera/image:=/camera/image_raw
 
-ros2 launch mam_eurobot_2026 arena.launch.py #
+# Proper lauch 
+colcon build
+source install/setup.bash
+ros2 launch mam_eurobot_2026 arena.launch.py # lauch file
 
 ign model --remove simple_robot #supprimer le model 
 
