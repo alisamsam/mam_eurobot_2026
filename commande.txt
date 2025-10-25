@@ -14,4 +14,12 @@ ros2 run ros_gz_sim create   -file /home/rosdev/eurobot_2026_ws/src/mam_eurobot_
 
 ign service -s /world/eurobot_2026_arena/remove   --reqtype ignition.msgs.Entity   --reptype ignition.msgs.Boolean   --timeout 300   --req 'name:"simple_robot", type:MODEL'
 
-add and remove
+add and remove robot
+
+remove crate :
+ign service -s /world/eurobot_2026_arena/remove   --reqtype ignition.msgs.Entity   --reptype ignition.msgs.Boolean   --timeout 300   --req 'name:"crate", type:MODEL'
+add crate 
+ros2 run ros_gz_sim create   -file /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/models/crate/model.sdf   -name crate   -x 0.3 -y 0.3 -z 0.05
+
+add second crate 
+ros2 run ros_gz_sim create   -file /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/models/crate/crate_aruco.sdf   -name crate2   -x 0.4 -y 0.3 -z 0.05
