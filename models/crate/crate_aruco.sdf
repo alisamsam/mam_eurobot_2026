@@ -69,7 +69,6 @@
         </geometry>
         <material>
           <diffuse>1 1 1 1</diffuse>
-          <!-- ↑this is must!!!! -->
           <pbr>
             <metal>
               <albedo_map>file://models/crate/aruco_36.png</albedo_map>

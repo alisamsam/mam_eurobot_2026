@@ -66,7 +66,7 @@
       <!-- Visual 2: face +Z (dessus) peinte BLEUE -->
       <visual name="top_blue_xy">
         <!-- pose: x y z R P Y -->
-        <pose>0 0 0.01475 0 0 0</pose>
+        <pose>0 0 0.0155 0 0 0</pose>
         <geometry>
           <!-- plaque fine parallèle au plan XY -->
           <box>
@@ -81,9 +81,9 @@
         <cast_shadows>false</cast_shadows>
       </visual>
 
-      <!-- Visual 3: face -Z (dessous) peinte JAUNE -->
+      <!-- Visual 3: face -Z (dessous) peinte JAUNE cahque face fait 0.0005 donc on a plus 0.001 sur la hauteur des crates-->
       <visual name="bottom_yellow_xy">
-        <pose>0 0 -0.01475 0 0 0</pose>
+        <pose>0 0 -0.0155 0 0 0</pose>   
         <geometry>
           <box>
             <size>0.15 0.05 0.0005</size>
@@ -97,7 +97,53 @@
         <cast_shadows>false</cast_shadows>
       </visual>
 
-  
+      <visual name="aruco_top">
+        <pose>0 0 0.016 0 0 0</pose>
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+          <plane>
+            <size>0.04 0.04</size>
+            <normal>0 0 1</normal>
+            <texture>
+              <size>0.03 0.03</size>
+            </texture>
+          </plane>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>file://models/crate/aruco_36.png</albedo_map>
+            </metal>
+          </pbr>
+          <double_sided>true</double_sided>
+        </material>
+      </visual>
+
+      <visual name="aruco_bottom">  <!-- faudrait que je rajoute le vynile, does it really matter? -->
+        <pose>0 0 -0.016 0 0 0</pose>
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+          <plane>
+            <size>0.04 0.04</size>
+            <normal>0 0 1</normal>
+            <texture>
+              <size>0.03 0.03</size>
+            </texture>
+          </plane>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>file://models/crate/aruco_47.png</albedo_map>
+            </metal>
+          </pbr>
+          <double_sided>true</double_sided>
+        </material>
+      </visual>
+
+      <!-- (Optionnel) bague vinyle : laisse commenté si non utilisé
       <visual name="vinyl_band">
         <pose>0 0 0 0 0 0</pose>
         <geometry>
@@ -111,7 +157,7 @@
           <specular>0.1 0.1 0.1 1</specular>
         </material>
       </visual>
-
+      -->
     </link>
   </model>
 </sdf>
