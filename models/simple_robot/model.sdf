@@ -165,7 +165,6 @@
       <topic>/cmd_vel</topic>
     </plugin>
 
-    <!-- ====================== CAMERA LINK ====================== -->
     <link name="camera_link">
       <inertial>
         <mass>0.01</mass>
@@ -202,13 +201,10 @@
       </sensor>
     </link>
 
-    <!-- LIAISON FIXE -->
     <joint name="camera_joint" type="fixed">
       <parent>chassis</parent>
       <child>camera_link</child>
       <pose relative_to="chassis">0 0 0 0 0 0</pose>
     </joint>
-    <!-- ========================================================= -->
-
   </model>
 </sdf>
