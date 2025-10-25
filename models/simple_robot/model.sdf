@@ -162,12 +162,11 @@
       <wheel_separation>0.12</wheel_separation>
       <wheel_radius>0.04</wheel_radius>
       <odom_publish_frequency>10</odom_publish_frequency>
-      <topic>cmd_vel</topic>
+      <topic>/cmd_vel</topic>
     </plugin>
 
-    <!-- ====================== CAMERA LINK (adapted from reference) ====================== -->
+    <!-- ====================== CAMERA LINK ====================== -->
     <link name="camera_link">
-      <pose relative_to="chassis">0.1 0 0.08 0 -0.8 -0,8</pose>
       <inertial>
         <mass>0.01</mass>
         <inertia>
@@ -177,6 +176,7 @@
       </inertial>
 
       <visual name="camera_visual">
+        <pose>-0.035 0 0.08 0 0 0</pose>
         <geometry><box><size>0.03 0.03 0.03</size></box></geometry>
         <material>
           <ambient>0 0 0 1</ambient>
@@ -185,7 +185,7 @@
       </visual>
 
       <sensor name="camera_sensor" type="camera">
-        <pose>0 0 0 0 -0.8 -0.8</pose>
+        <pose>0 0 0.2 0 0.5236 3.14159</pose>       <!--liner de 30 deg -->
         <always_on>true</always_on>
         <update_rate>30</update_rate>
         <visualize>true</visualize>
@@ -196,16 +196,19 @@
             <height>480</height>
             <format>RGB_INT8</format>
           </image>
-          <clip>
-            <near>0.1</near>
-            <far>100</far>
-          </clip>
+          <clip><near>0.1</near><far>100</far></clip>
         </camera>
         <topic>camera/image_raw</topic>
       </sensor>
     </link>
 
-    <!-- =================================================================== -->
+    <!-- LIAISON FIXE -->
+    <joint name="camera_joint" type="fixed">
+      <parent>chassis</parent>
+      <child>camera_link</child>
+      <pose relative_to="chassis">0 0 0 0 0 0</pose>
+    </joint>
+    <!-- ========================================================= -->
 
   </model>
 </sdf>
