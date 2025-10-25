@@ -9,3 +9,9 @@ ign model --remove simple_robot #supprimer le model
 
 ign service -s /world/eurobot_2026_arena/create   --reqtype ignition.msgs.EntityFactory --reptype ignition.msgs.Boolean --timeout 300   --req 'sdf_filename:"/home/rosdev/eurobot_2026_ws/mam_eurobot_2026/mam_eurobot_2026/models/simple_robot", name:"model"'
 #permet de charger mon model dans l'environnement 
+
+ros2 run ros_gz_sim create   -file /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/models/simple_robot/model.sdf   -name simple_robot   -x 0 -y 0 -z 0.05
+
+ign service -s /world/eurobot_2026_arena/remove   --reqtype ignition.msgs.Entity   --reptype ignition.msgs.Boolean   --timeout 300   --req 'name:"simple_robot", type:MODEL'
+
+add and remove

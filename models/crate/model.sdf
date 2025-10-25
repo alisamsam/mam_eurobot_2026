@@ -97,7 +97,7 @@
         <cast_shadows>false</cast_shadows>
       </visual>
 
-      <!-- (Optionnel) bague vinyle : laisse commenté si non utilisé
+  
       <visual name="vinyl_band">
         <pose>0 0 0 0 0 0</pose>
         <geometry>
@@ -111,7 +111,7 @@
           <specular>0.1 0.1 0.1 1</specular>
         </material>
       </visual>
-      -->
+
     </link>
   </model>
 </sdf>
