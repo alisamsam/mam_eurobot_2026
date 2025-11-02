@@ -1,4 +1,7 @@
 ros2 run ros_gz_bridge parameter_bridge   /sim/camera/image@sensor_msgs/msg/Image@ignition.msgs.Image   --ros-args -r /sim/camera/image:=/camera/image_raw
+#camera bridge
+ros2 run ros_gz_bridge parameter_bridge \
+  /camera/image_raw@sensor_msgs/msg/Image@gz.msgs.Image
 
 # Proper lauch 
 colcon build
@@ -23,3 +26,22 @@ ros2 run ros_gz_sim create   -file /home/rosdev/eurobot_2026_ws/src/mam_eurobot_
 
 add second crate 
 ros2 run ros_gz_sim create   -file /home/rosdev/eurobot_2026_ws/src/mam_eurobot_2026/models/crate/crate_aruco.sdf   -name crate2   -x 0.4 -y 0.3 -z 0.05
+
+#Fun fact  (ROS spawn object by using their gravity center as origine)
+
+                  ↑ +X   
+                  │
+                  │
+                  │
+         (-Y) <───┼───> (+Y)
+                  │
+                  │
+                  │
+                  ↓ -X   
+
+
+-R → roll 
+
+-P → pitch 
+
+-Y → yaw (The order is mandotory)
