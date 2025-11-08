@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-#!/usr/bin/env python3
 
 import rclpy
 from geometry_msgs.msg import Twist
@@ -9,7 +8,7 @@ from rclpy.executors import ExternalShutdownException
 class TestPyNode(Node):
     def __init__(self):
         super().__init__("test_py_node")
-        self.get_logger().info("Hello from Python!")
+        self.get_logger().info("Hello from Python!")    
         self.publisher_ = self.create_publisher(Twist, '/cmd_vel', 10)
         self.count = 0
         self.timer = self.create_timer(0.5, self.timer_callback)

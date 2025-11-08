@@ -224,6 +224,25 @@ def generate_launch_description():
             output="screen"
         ),
 
+        #beacons
+        ExecuteProcess(
+            cmd=[
+                "ros2", "run", "ros_gz_sim", "create",
+                "-file", "file://models/beacons/beaconY.sdf",
+                "-name", "beaconY",
+                "-x", "-1.5", "-y", "-1.0", "-z", "0.0"
+            ],
+            output="screen"
+        ),
+        ExecuteProcess(
+            cmd=[
+                "ros2", "run", "ros_gz_sim", "create",
+                "-file", "file://models/beacons/beaconB.sdf",
+                "-name", "beaconB",
+                "-x", "1.5", "-y", "1.0", "-z", "0.0"
+            ],
+            output="screen"
+        ),
 
         # Robot (0,0) monde -> (1000mm, 1500mm) sur le tapis
         ExecuteProcess(
