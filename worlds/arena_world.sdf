@@ -32,6 +32,47 @@
       <render_engine>ogre2</render_engine>
     </plugin>
 
+    <!-- === Static corner camera (left_cam) === -->
+    <model name="left_corner_cam">
+      <static>true</static>
+      <pose>1.950 -1.550 1.0  0  -0.9  0.785</pose> #je dois le réorienter
+
+      <link name="link">
+        <inertial>
+          <mass>0.01</mass>
+          <inertia>
+            <ixx>1e-6</ixx><iyy>1e-6</iyy><izz>1e-6</izz>
+            <ixy>0</ixy><ixz>0</ixz><iyz>0</iyz>
+          </inertia>
+        </inertial>
+
+        <visual name="body">
+          <geometry><box><size>0.03 0.03 0.03</size></box></geometry>
+          <material><diffuse>0.2 0.2 0.2 1</diffuse></material>
+        </visual>
+
+        <sensor name="left_corner_cam_sensor" type="camera">
+          <always_on>true</always_on>
+          <update_rate>15</update_rate>
+          <visualize>true</visualize>
+          <camera>
+            <horizontal_fov>1.047</horizontal_fov> <!-- ~60° -->
+            <image>
+              <width>640</width>
+              <height>480</height>
+              <format>RGB_INT8</format>
+            </image>
+            <clip>
+              <near>0.05</near>
+              <far>50.0</far>
+            </clip>
+          </camera>
+          <topic>left_cam/image_raw</topic>
+        </sensor>
+      </link>
+    </model>
+
+
     <model name="ground_plane">
       <static>true</static>
       <link name="link">

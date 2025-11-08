@@ -255,7 +255,6 @@ def generate_launch_description():
             output="screen"
         ),
 
-        # Bridge cmd_vel
         Node(
             package='ros_gz_bridge',
             executable='parameter_bridge',
@@ -272,7 +271,6 @@ def generate_launch_description():
             arguments=['/camera/image_raw@sensor_msgs/msg/Image@gz.msgs.Image'],
         ),
 
-        # (optionnel) Bridge CameraInfo (si tu en as besoin dans RViz)
         Node(
             package='ros_gz_bridge',
             executable='parameter_bridge',
@@ -280,7 +278,17 @@ def generate_launch_description():
             output='screen',
             arguments=['/camera/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo'],
         ),
-
+        #second camera (left corner)
+        Node(
+            package='ros_gz_bridge',
+            executable='parameter_bridge',
+            name='camera_bridges',
+            output='screen',
+            arguments=[
+                '/left_cam/image_raw@sensor_msgs/msg/Image@gz.msgs.Image',
+                '/left_cam/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo',
+            ],
+        ),
         # RViz
         Node(
             package='rviz2',
