@@ -59,10 +59,10 @@
       <pose relative_to="chassis">-0.06 0.06 0 -1.5707 0 0</pose>
       <inertial>
         <mass>0.2</mass>
-        <inertial>
+        <inertia>
           <ixx>0.000800</ixx><ixy>0</ixy><ixz>0</ixz>
           <iyy>0.000433</iyy><iyz>0</iyz><izz>0.000433</izz>
-        </inertial>
+        </inertia>
       </inertial>
       <visual name="visual">
         <geometry><cylinder><radius>0.04</radius><length>0.02</length></cylinder></geometry>
@@ -238,5 +238,86 @@
       <child>camera_link</child>
       <pose relative_to="chassis">0 0 0 0 0 0</pose>
     </joint>
+
+    <!-- === LiDAR : link dédié + joint fixe === -->
+    <link name="base_scan">
+      <!-- position du boîtier LiDAR par rapport au modèle -->
+      <pose relative_to="chassis">0 0 0.10 0 0 0</pose>
+
+      <inertial>
+        <mass>0.05</mass>
+        <inertia>
+          <ixx>1.0e-5</ixx><iyy>1.0e-5</iyy><izz>1.0e-5</izz>
+          <ixy>0</ixy><ixz>0</ixz><iyz>0</iyz>
+        </inertia>
+      </inertial>
+
+      <!-- VISUAL: cylindre Ø36mm x 13mm -->
+      <visual name="lidar_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.018</radius>
+            <length>0.013</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>0.2 0.2 0.2 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- COLLISION (même géométrie) -->
+      <collision name="lidar_collision">
+        <geometry>
+          <cylinder>
+            <radius>0.018</radius>
+            <length>0.013</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <!-- Capteur LiDAR (ray) côté GZ -->
+      <sensor name="hls_lfcd_lds" type="gpu_lidar">
+        <pose>0 0 0.010 0 0 0</pose>
+        <always_on>1</always_on>
+        <update_rate>15</update_rate>
+        <visualize>true</visualize>
+        <topic>/lidar</topic>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>720</samples>
+              <resolution>1</resolution>
+              <min_angle>-1.5708</min_angle>
+              <max_angle>1.5708</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>1</samples>
+              <resolution>1</resolution>
+              <min_angle>0</min_angle>
+              <max_angle>0</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>0.12</min>
+            <max>12.0</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+      </sensor>
+    </link>
+
+    <joint name="lidar_joint" type="fixed">
+      <parent>chassis</parent>
+      <child>base_scan</child>
+      <pose relative_to="chassis">0 0 0 0 0 0</pose>
+    </joint>
+
   </model>
 </sdf>

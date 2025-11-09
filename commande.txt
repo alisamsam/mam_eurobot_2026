@@ -1,5 +1,5 @@
 ros2 run ros_gz_bridge parameter_bridge   /sim/camera/image@sensor_msgs/msg/Image@ignition.msgs.Image   --ros-args -r /sim/camera/image:=/camera/image_raw
-#camera bridge
+#camera bridge (plus la peine)
 ros2 run ros_gz_bridge parameter_bridge \
   /camera/image_raw@sensor_msgs/msg/Image@gz.msgs.Image
 
@@ -45,3 +45,6 @@ ros2 run ros_gz_sim create   -file /home/rosdev/eurobot_2026_ws/src/mam_eurobot_
 -P → pitch 
 
 -Y → yaw (The order is mandotory)
+
+ros2 run ros_gz_bridge parameter_bridge /lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan --ros-args -r /lidar:=/scan
+#bridge pour le lidar
