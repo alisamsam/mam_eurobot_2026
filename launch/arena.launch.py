@@ -228,9 +228,9 @@ def generate_launch_description():
         ExecuteProcess(
             cmd=[
                 "ros2", "run", "ros_gz_sim", "create",
-                "-file", "file://models/beacons/beaconY.sdf",
-                "-name", "beaconY",
-                "-x", "-1.5", "-y", "-1.0", "-z", "0.0"
+                "-file", "file://models/beacons/beaconB.sdf",
+                "-name", "beaconB1",
+                "-x", "0.95", "-y", "-1.55", "-z", "0.0"
             ],
             output="screen"
         ),
@@ -238,8 +238,44 @@ def generate_launch_description():
             cmd=[
                 "ros2", "run", "ros_gz_sim", "create",
                 "-file", "file://models/beacons/beaconB.sdf",
-                "-name", "beaconB",
-                "-x", "1.5", "-y", "1.0", "-z", "0.0"
+                "-name", "beaconB2",
+                "-x", "-0.95", "-y", "-1.55", "-z", "0.0"
+            ],
+            output="screen"
+        ),
+        ExecuteProcess(
+            cmd=[
+                "ros2", "run", "ros_gz_sim", "create",
+                "-file", "file://models/beacons/beaconY.sdf",
+                "-name", "beaconY1",
+                "-x", "0", "-y", "-1.55", "-z", "0.0"
+            ],
+            output="screen"
+        ),
+        ExecuteProcess(
+            cmd=[
+                "ros2", "run", "ros_gz_sim", "create",
+                "-file", "file://models/beacons/beaconB.sdf",
+                "-name", "beaconB3",
+                "-x", "0", "-y", "1.55", "-z", "0.0"
+            ],
+            output="screen"
+        ),
+        ExecuteProcess(
+            cmd=[
+                "ros2", "run", "ros_gz_sim", "create",
+                "-file", "file://models/beacons/beaconY.sdf",
+                "-name", "beaconY2",
+                "-x", "-0.95", "-y", "1.55", "-z", "0.0"
+            ],
+            output="screen"
+        ),
+        ExecuteProcess(
+            cmd=[
+                "ros2", "run", "ros_gz_sim", "create",
+                "-file", "file://models/beacons/beaconY.sdf",
+                "-name", "beaconY3",
+                "-x", "0.95", "-y", "1.55", "-z", "0.0"
             ],
             output="screen"
         ),
@@ -289,6 +325,63 @@ def generate_launch_description():
                 '/left_cam/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo',
             ],
         ),
+        #bridge for lidar
+        Node(
+            package='ros_gz_bridge',
+            executable='parameter_bridge',
+            name='lidar_bridge',
+            output='screen',
+            arguments=['/lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan'],
+            remappings=[('/lidar', '/scan')]
+        ),
+        # Bridge pour l'odométrie et les transformations (gère automatiquement la position du robot)
+        Node(
+            package='ros_gz_bridge',
+            executable='parameter_bridge',
+            name='odom_bridge',
+            output='screen',
+            arguments=['/model/simple_robot/odometry@nav_msgs/msg/Odometry[ignition.msgs.Odometry'],
+        ),
+        
+        Node(
+            package='ros_gz_bridge',
+            executable='parameter_bridge',
+            name='tf_bridge',
+            output='screen',
+            arguments=['/model/simple_robot/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V'],
+        ),
+        
+        # TF STATIQUES pour le lidar
+       
+        Node(
+            package='tf2_ros',
+            executable='static_transform_publisher',
+            name='chassis_to_base_scan',
+            arguments=['0', '0', '0.10', '0', '0', '0', 'simple_robot/chassis', 'simple_robot/base_scan']
+        ),
+        
+        Node(
+            package='tf2_ros',
+            executable='static_transform_publisher',
+            name='base_scan_to_lidar',
+            arguments=['0', '0', '0.01', '0', '0', '0', 'simple_robot/base_scan', 'simple_robot/base_scan/hls_lfcd_lds']
+        ),
+
+        # Static TF pour la caméra frontale
+        Node(
+            package='tf2_ros',
+            executable='static_transform_publisher',
+            name='chassis_to_camera_link',
+            arguments=['-0.085', '0', '0.08', '0', '0', '0', 'simple_robot/chassis', 'simple_robot/camera_link']
+        ),
+        
+        Node(
+            package='tf2_ros',
+            executable='static_transform_publisher',
+            name='camera_link_to_sensor',
+            arguments=['0.035', '0', '0.12', '0', '0.5236', '0', 'simple_robot/camera_link', 'simple_robot/camera_sensor']
+        ),
+
         # RViz
         Node(
             package='rviz2',

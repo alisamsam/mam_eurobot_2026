@@ -32,10 +32,10 @@
       <render_engine>ogre2</render_engine>
     </plugin>
 
-    <!-- === Static corner camera (left_cam) === -->
+    <!-- === Static corner camera (left_cam) x est l'axe sur le point focale === -->
     <model name="left_corner_cam">
       <static>true</static>
-      <pose>1.950 -1.550 1.0  0  -0.9  0.785</pose> #je dois le réorienter
+      <pose>1.950 -1.550 1.0 0 0.5236 2.5</pose> <!--<pose>1.950 -1.550 1.0  0  1.5  1.5</pose>-->
 
       <link name="link">
         <inertial>

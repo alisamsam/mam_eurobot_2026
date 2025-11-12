@@ -33,7 +33,7 @@ ros2 run ros_gz_sim create   -file /home/rosdev/eurobot_2026_ws/src/mam_eurobot_
                   │
                   │
                   │
-         (-Y) <───┼───> (+Y)
+         (+Y) <───┼───> (-Y)
                   │
                   │
                   │
@@ -47,4 +47,12 @@ ros2 run ros_gz_sim create   -file /home/rosdev/eurobot_2026_ws/src/mam_eurobot_
 -Y → yaw (The order is mandotory)
 
 ros2 run ros_gz_bridge parameter_bridge /lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan --ros-args -r /lidar:=/scan
-#bridge pour le lidar
+#bridge pour le lidar (need to be include in the launch)
+
+ros2 run ros_gz_bridge parameter_bridge /model/simple_robot/pose@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V
+
+made the code flowchart
+
+bon bridge pour lidar
+ros2 run ros_gz_bridge parameter_bridge   /lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan   /model/simple_robot/tf@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V   --ros-args -r /lidar:=/scan
+
