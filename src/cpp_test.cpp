@@ -5,11 +5,9 @@
 
 class TestCppNode : public rclcpp::Node {
     public:
-        TestCppNode() : Node("test_cpp_node") {
+        TestCppNode() : Node("test_cpp_node"), count_(0) {
             RCLCPP_INFO(this->get_logger(), "Hello from C++!");
-
             publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
-
             timer_ = this->create_wall_timer(std::chrono::milliseconds(500),
                                              std::bind(&TestCppNode::timer_callback, this));
         }

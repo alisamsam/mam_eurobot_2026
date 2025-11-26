@@ -6,7 +6,7 @@
     <link name="chassis">
       <pose relative_to="__model__">0.05 0 0.04 0 0 0</pose>
       <inertial>
-        <mass>1</mass>
+        <mass>2.5</mass>
         <inertia>
           <ixx>0.001191615</ixx><ixy>0</ixy><ixz>0</ixz>
           <iyy>0.004051490</iyy><iyz>0</iyz><izz>0.004766458</izz>
@@ -20,6 +20,31 @@
           <specular>0.0 0.612 0.867 1</specular>
         </material>
       </visual>
+
+      <visual name="aruco_tag"> 
+        <!-- z augmenté pour qu'il soit au-dessus du châssis -->
+        <pose>0 0 0.0255 0 0 0</pose>
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+          <plane>
+            <size>0.04 0.04</size>
+            <normal>0 0 1</normal>
+            <texture>
+              <size>0.03 0.03</size>
+            </texture>
+          </plane>
+        </geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse>
+          <pbr>
+            <metal>
+              <albedo_map>file://models/simple_robot/Aruco3.png</albedo_map>
+            </metal>
+          </pbr>
+          <double_sided>true</double_sided>
+        </material>
+      </visual>
+
       <collision name="collision">
         <geometry><box><size>0.2 0.1 0.05</size></box></geometry>
       </collision>
@@ -234,7 +259,7 @@
         <update_rate>30</update_rate>
         <visualize>true</visualize>
         <camera>
-          <horizontal_fov>1.047</horizontal_fov>
+          <horizontal_fov>1.78</horizontal_fov>
           <image>
             <width>640</width>
             <height>480</height>
@@ -252,7 +277,7 @@
       <pose relative_to="chassis">0 0 0 0 0 0</pose>
     </joint>
 
-    <!-- === LiDAR : link dédié + joint fixe === -->
+    <!-- LiDAR -->
     <link name="base_scan">
       <!-- position du boîtier LiDAR par rapport au modèle -->
       <pose relative_to="chassis">0 0 0.10 0 0 0</pose>
@@ -302,8 +327,8 @@
             <horizontal>
               <samples>720</samples>
               <resolution>1</resolution>
-              <min_angle>-1.5708</min_angle>
-              <max_angle>1.5708</max_angle>
+              <min_angle>-3.14159</min_angle>
+              <max_angle>3.14159</max_angle>
             </horizontal>
             <vertical>
               <samples>1</samples>
@@ -314,7 +339,7 @@
           </scan>
           <range>
             <min>0.12</min>
-            <max>12.0</max>
+            <max>6.0</max>
             <resolution>0.01</resolution>
           </range>
           <noise>

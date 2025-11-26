@@ -9,15 +9,8 @@ setup(
     version='0.0.1',
     packages=find_packages(exclude=['test']),
     data_files=[
-        # index ament
         ('share/ament_index/resource_index/packages', ['resource/' + package_name]),
-        # package.xml
         ('share/' + package_name, ['package.xml']),
-        # installe tous les launch
-        ('share/' + package_name + '/launch', glob('launch/*.launch.py')),
-        # installe mondes, modèles, etc. (facultatif mais pratique)
-        ('share/' + package_name + '/worlds', glob('worlds/*')),
-        ('share/' + package_name + '/models', glob('models/**/*', recursive=True)),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
