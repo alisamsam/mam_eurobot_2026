@@ -44,6 +44,7 @@ install(PROGRAMS
   ${PROJECT_NAME}/key_ctrl.py
   ${PROJECT_NAME}/half_spin.py
   ${PROJECT_NAME}/open_cv_cam.py
+  ${PROJECT_NAME}/auto_move.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

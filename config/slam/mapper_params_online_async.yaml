@@ -11,7 +11,11 @@ slam_toolbox:
 
     # LiDAR
     scan_topic: /scan
-    mode: mapping   # on fait du SLAM, pas juste de la localisation
+    # mode: mapping
+    mode: localization   # on fait de la localisation seule
+
+    # Carte à charger (doit être lancée depuis la racine du workspace)
+    map_file_name: mymap.yaml
 
     # Fréquences / TF
     transform_publish_period: 0.05    # 20 Hz

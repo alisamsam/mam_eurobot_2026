@@ -6,7 +6,7 @@ source install/setup.bash
 ros2 launch mam_eurobot_2026 arena.launch.py
 ros2 launch mam_eurobot_2026 combined.launch.py
 ros2 launch mam_eurobot_2026 arena.launch.py launch_rviz:=true
-
+ros2 launch mam_eurobot_2026 arena.launch.py gazebo_headless:=true launch_rviz:=true
 
 # ---------------------------------------------------------
 # 2. Gazebo model management
@@ -67,4 +67,6 @@ ros2 run ros_gz_bridge parameter_bridge \
 #
 # Rotation order: -R (roll), -P (pitch), -Y (yaw)
 #
-# RViz parfois : rm -rf ~/.rviz2
+# RViz parfois bugs : rm -rf ~/.rviz2
+#
+# Rentrer dans le terminal PS C:\Users\disyt\ws> docker exec -it trusting_greider bash
