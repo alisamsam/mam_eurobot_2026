@@ -11,11 +11,9 @@ slam_toolbox:
 
     # LiDAR
     scan_topic: /scan
-    # mode: mapping
-    mode: localization   # on fait de la localisation seule
-
-    # Carte à charger (doit être lancée depuis la racine du workspace)
-    map_file_name: mymap.yaml
+    mode: mapping
+    #mode: localization
+    #map_file_name: mymap.yaml
 
     # Fréquences / TF
     transform_publish_period: 0.05    # 20 Hz
@@ -27,7 +25,7 @@ slam_toolbox:
     max_laser_range: 6.0              # idem
     minimum_travel_distance: 0.1
     minimum_travel_heading: 0.17
-    map_update_interval: 2.0
+    map_update_interval: 0.5
 
     # Options raisonnables pour débuter
     enable_interactive_mode: false

@@ -24,10 +24,10 @@ def crate_create_cmd(name, x, y, z=0.05, pitch=None, yaw=None):
 
 
 def generate_launch_description():
-    # Substitution pour Gazebo, etc.
+    # Substitution pour Gazebo,
     pkg_path = FindPackageShare('mam_eurobot_2026')
 
-    # === SLAM TOOLBOX : chemin du fichier de paramètres ===
+    # Paramètres SLAM Toolbox
     slam_params_file = os.path.join(
         get_package_share_directory('mam_eurobot_2026'),
         'config', 'slam', 'mapper_params_online_async.yaml'
@@ -215,6 +215,7 @@ def generate_launch_description():
             arguments=['0', '0', '0.01', '0', '0', '0',
                        'simple_robot/base_scan', 'simple_robot/base_scan/hls_lfcd_lds']
         ),
+    
 
         # TF statiques pour la caméra frontale
         Node(

@@ -1,0 +1,11 @@
+digraph G {
+"simple_robot/chassis" -> "simple_robot/camera_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"map" -> "simple_robot/chassis"[label=" Broadcaster: default_authority\nAverage rate: 9.772\nBuffer length: 0.614\nMost recent transform: 2.414\nOldest transform: 1.8\n"];
+"simple_robot/base_scan" -> "simple_robot/base_scan/hls_lfcd_lds"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"simple_robot/chassis" -> "simple_robot/base_scan"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"simple_robot/camera_link" -> "simple_robot/camera_sensor"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1764708523.9818423"[ shape=plaintext ] ;
+}->"map";
+}

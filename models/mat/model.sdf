@@ -31,8 +31,7 @@
         </material>
       </visual>
 
-      <!-- ===== Plateforme (0.45 x 1.8 x 0.055 m) posée sur le tapis ===== -->
-      <!-- Centre Z = 0.0035 + 0.055/2 = 0.031 ; Centre X = 1.0 - 0.45/2 = 0.775 ; Y = 0 -->
+      <!-- ===== Plateforme centrale (450 x 1800 x 55 mm) ===== -->
       <collision name="platform_collision">
         <pose>0.775 0.0 0.031 0 0 0</pose>
         <geometry>
@@ -53,13 +52,6 @@
           <pbr><metal><metalness>0.0</metalness><roughness>0.9</roughness></metal></pbr>
         </material>
       </visual>
-
-      <!-- ===== Bordures (70 mm haut x 22 mm épais) incluses dans 2 x 3 m =====
-           Z centre bordure = haut tapis/2 + hauteur/2 = 0.0035 + 1/2 = 0.0385
-           Décalage épaisseur/2 = 0.022/2 = 0.011
-           -> X bordure longues = ±(1.0 - 0.011) = ±0.989  (longueur 3.0 le long de Y)
-           -> Y bordure courtes = ±(1.5 - 0.011) = ±1.489  (longueur 2.0 le long de X)
-      =============================================================== -->
 
       <!-- Longue +X -->
       <collision name="border_long_posX_collision">
