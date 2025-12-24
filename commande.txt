@@ -8,6 +8,16 @@ ros2 launch mam_eurobot_2026 combined.launch.py
 ros2 launch mam_eurobot_2026 arena.launch.py launch_rviz:=true
 ros2 launch mam_eurobot_2026 arena.launch.py gazebo_headless:=true launch_rviz:=true
 
+# --- Options de lancement modulaires (Optimisation) ---
+# Lidar seul :
+# ros2 launch mam_eurobot_2026 arena.launch.py launch_lidar:=true
+# SLAM (nécessite lidar) :
+# ros2 launch mam_eurobot_2026 arena.launch.py launch_slam:=true launch_lidar:=true
+# Caméras :
+# ros2 launch mam_eurobot_2026 arena.launch.py launch_camera:=true
+# Tout activer :
+# ros2 launch mam_eurobot_2026 arena.launch.py launch_lidar:=true launch_camera:=true launch_slam:=true launch_rviz:=true
+
 # ---------------------------------------------------------
 # 2. Gazebo model management
 # ---------------------------------------------------------

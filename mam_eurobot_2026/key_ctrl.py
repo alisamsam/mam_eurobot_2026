@@ -128,7 +128,7 @@ def main():
             settings = termios.tcgetattr(sys.stdin)
             tty.setcbreak(sys.stdin.fileno())
         else:
-            print("⚠️  No TTY detected — run via `docker exec -it ... bash` to use arrow keys.")
+            print("No TTY detected")
         rclpy.init()
         node = ArrowTeleop()
         rclpy.spin(node)

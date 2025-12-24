@@ -4,9 +4,8 @@ from launch.actions import DeclareLaunchArgument, ExecuteProcess, SetEnvironment
 from launch.conditions import IfCondition, UnlessCondition
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
-
-from ament_index_python.packages import get_package_share_directory  # <-- ajouté
-import os  # <-- ajouté
+from ament_index_python.packages import get_package_share_directory
+import os
 
 
 def crate_create_cmd(name, x, y, z=0.05, pitch=None, yaw=None):
@@ -24,7 +23,6 @@ def crate_create_cmd(name, x, y, z=0.05, pitch=None, yaw=None):
 
 
 def generate_launch_description():
-    # Substitution pour Gazebo,
     pkg_path = FindPackageShare('mam_eurobot_2026')
 
     # Paramètres SLAM Toolbox
@@ -40,6 +38,7 @@ def generate_launch_description():
         name='slam_toolbox',
         output='screen',
         parameters=[slam_params_file, {'use_sim_time': True}],
+        condition=IfCondition(LaunchConfiguration('launch_slam')),
     )
 
     crates = [
@@ -157,6 +156,7 @@ def generate_launch_description():
                 '/camera/image_raw@sensor_msgs/msg/Image@gz.msgs.Image',
                 '/camera/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo',
             ],
+            condition=IfCondition(LaunchConfiguration('launch_camera')),
         ),
 
         # Seconde caméra (left corner)
@@ -169,6 +169,7 @@ def generate_launch_description():
                 '/left_cam/image_raw@sensor_msgs/msg/Image@gz.msgs.Image',
                 '/left_cam/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo',
             ],
+            condition=IfCondition(LaunchConfiguration('launch_camera')),
         ),
 
         # Lidar
@@ -178,7 +179,8 @@ def generate_launch_description():
             name='lidar_bridge',
             output='screen',
             arguments=['/lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan'],
-            remappings=[('/lidar', '/scan')]
+            remappings=[('/lidar', '/scan')],
+            condition=IfCondition(LaunchConfiguration('launch_lidar')),
         ),
 
         # Odométrie
@@ -206,14 +208,16 @@ def generate_launch_description():
             executable='static_transform_publisher',
             name='chassis_to_base_scan',
             arguments=['0', '0', '0.10', '0', '0', '0',
-                       'simple_robot/chassis', 'simple_robot/base_scan']
+                       'simple_robot/chassis', 'simple_robot/base_scan'],
+            condition=IfCondition(LaunchConfiguration('launch_lidar')),
         ),
         Node(
             package='tf2_ros',
             executable='static_transform_publisher',
             name='base_scan_to_lidar',
             arguments=['0', '0', '0.01', '0', '0', '0',
-                       'simple_robot/base_scan', 'simple_robot/base_scan/hls_lfcd_lds']
+                       'simple_robot/base_scan', 'simple_robot/base_scan/hls_lfcd_lds'],
+            condition=IfCondition(LaunchConfiguration('launch_lidar')),
         ),
     
 
@@ -223,14 +227,16 @@ def generate_launch_description():
             executable='static_transform_publisher',
             name='chassis_to_camera_link',
             arguments=['-0.085', '0', '0.08', '0', '0', '0',
-                       'simple_robot/chassis', 'simple_robot/camera_link']
+                       'simple_robot/chassis', 'simple_robot/camera_link'],
+            condition=IfCondition(LaunchConfiguration('launch_camera')),
         ),
         Node(
             package='tf2_ros',
             executable='static_transform_publisher',
             name='camera_link_to_sensor',
             arguments=['0.035', '0', '0.12', '0', '0.5236', '0',
-                       'simple_robot/camera_link', 'simple_robot/camera_sensor']
+                       'simple_robot/camera_link', 'simple_robot/camera_sensor'],
+            condition=IfCondition(LaunchConfiguration('launch_camera')),
         ),
 
         # RViz (optionnel)
@@ -269,6 +275,21 @@ def generate_launch_description():
             DeclareLaunchArgument(
                 "launch_rviz",
                 default_value='false'
+            ),
+            DeclareLaunchArgument(
+                "launch_slam",
+                default_value='false',
+                description='Lancer SLAM Toolbox'
+            ),
+            DeclareLaunchArgument(
+                "launch_camera",
+                default_value='false',
+                description='Lancer les bridges et TF des cameras'
+            ),
+            DeclareLaunchArgument(
+                "launch_lidar",
+                default_value='false',
+                description='Lancer le bridge et TF du lidar'
             ),
             DeclareLaunchArgument(
                 "gazebo_headless",
