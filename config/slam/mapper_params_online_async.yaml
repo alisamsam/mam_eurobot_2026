@@ -11,9 +11,9 @@ slam_toolbox:
 
     # LiDAR
     scan_topic: /scan
-    mode: mapping
-    #mode: localization
-    #map_file_name: mymap.yaml
+    #mode: mapping
+    mode: localization
+    map_file_name: mymap.yaml
 
     # Fréquences / TF
     transform_publish_period: 0.05    # 20 Hz
