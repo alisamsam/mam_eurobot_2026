@@ -23,11 +23,11 @@ setup(
     license='Apache License 2.0',
     entry_points={
         'console_scripts': [
-            'py_test     = mam_eurobot_2026.py_test:main',
-            'key_ctrl    = mam_eurobot_2026.key_ctrl:main',     
-            'half_spin   = mam_eurobot_2026.half_spin:main',
-            'open_cv_cam = mam_eurobot_2026.open_cv_cam:main',
-            'auto_move   = mam_eurobot_2026.auto_move:main', 
+            'py_test     = mam_eurobot_2026.Move.py_test:main',
+            'key_ctrl    = mam_eurobot_2026.Move.key_ctrl:main',     
+            'half_spin   = mam_eurobot_2026.Move.half_spin:main',
+            'cam_view    = mam_eurobot_2026.Perception.cam_view:main',
+            'auto_move   = mam_eurobot_2026.Move.auto_move:main', 
         ],
     },
 )

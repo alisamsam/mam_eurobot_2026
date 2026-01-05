@@ -40,11 +40,11 @@ install(FILES resource/${PROJECT_NAME} DESTINATION share/ament_index/resource_in
 ament_python_install_package(${PROJECT_NAME})
 
 install(PROGRAMS
-  ${PROJECT_NAME}/py_test.py
-  ${PROJECT_NAME}/key_ctrl.py
-  ${PROJECT_NAME}/half_spin.py
-  ${PROJECT_NAME}/open_cv_cam.py
-  ${PROJECT_NAME}/auto_move.py
+  ${PROJECT_NAME}/Move/py_test.py
+  ${PROJECT_NAME}/Move/key_ctrl.py
+  ${PROJECT_NAME}/Move/half_spin.py
+  ${PROJECT_NAME}/Perception/cam_view.py
+  ${PROJECT_NAME}/Move/auto_move.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
