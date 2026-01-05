@@ -1,0 +1,65 @@
+Mechanical CAD
+
+Project Name: 
+
+Version: [e.g., v1.0 - Final Competition Build]
+
+Date: 
+
+Authors:
+
+---
+
+1. System Overview
+
+
+* Final Assembly Render: [Insert high-resolution CAD render of the full robot here]
+* Physical Specifications:
+	* Weight:
+	* Dimensions: [Insert Max Length x Width x Height and specify if deploy status affects dimensions]
+	* Primary Materials: 
+
+
+2. Subsystem Breakdown
+
+# Repeat this section for every major module (Frame, arm, gripper, etc.).
+
+Subsystem A: [Insert Name, e.g., Frame]
+
+* Function: [Explain what this part does for the robot]
+* CAD View:
+* Design Rationale:
+	* Why this shape? [Explanation]
+	* Why this motor/gear ratio? [Explanation]
+
+---
+
+3. Assembly Instructions
+
+# This is the "LEGO Manual" phase. Document the steps to put it together.
+
+---
+
+4. Engineering Constraints & Tolerances
+
+# The facts and the numbers
+
+* Critical Tolerances:
+* Critical Constraints:
+* Observations:
+
+---
+
+5. Maintenance & Inspection Checklist
+
+# How to keep the robot running during the competition.
+
+* Pre-Match Check:
+
+
+
+* Post-Match Check:
+
+
+
+---

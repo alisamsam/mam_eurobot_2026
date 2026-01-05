@@ -1,0 +1,27 @@
+ROBO-UN Documentation Structure
+├── [Folder 01] Management & Strategy
+│   ├── Project Charter (Problem statement & goals)
+│   ├── Team Organisation (Roles & responsibilities)
+│   └── Project Timeline (Gantt chart & milestones)
+│
+├── [Folder 02] Design & Engineering
+│   ├── Design Requirements (Constraints & specs)
+│   ├── Brainstorming & Decision-making
+│   ├── Mechanical CAD
+│   └── Electrical Schematics
+│
+├── [Folder 03] Simulation & Programming
+│   ├── Control Logic Flowcharts (High-level behavior)
+│   ├── Sensor Integration & Data Processing
+│   ├── Simulation Environment & Results
+│   └── Code Documentation (Explanations and breakdowns, not just plain code)
+│
+├── [Folder 04] Testing & Iteration (Some of it might not be applicable now but it's good to show we considered this part too)
+│   ├── Test Protocols 
+│   ├── Failure Log
+│   └── Performance Data
+│
+└── [Folder 05] Appendix & Technical Data
+    ├── BOM
+    ├── Glossary of Terms
+    └── Meeting Reports, PPTs & Weekly Progress Logs
