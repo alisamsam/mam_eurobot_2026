@@ -9,6 +9,17 @@ def generate_launch_description():
     map_yaml = '/workspaces/mam_eurobot_2026/mymap.yaml'
     nav2_params = '/workspaces/mam_eurobot_2026/config/nav2/nav2_params.yaml'
 
+    from launch.actions import ExecuteProcess
+
+    initial_pose = ExecuteProcess(
+        cmd=[
+            'ros2', 'topic', 'pub', '--once', '/initialpose',
+            'geometry_msgs/msg/PoseWithCovarianceStamped',
+            '{header: {frame_id: "map"}, pose: {pose: {position: {x: 1.0, y: 2.0, z: 0.0}, orientation: {z: 0.0, w: 1.0}}, covariance: [0.25, 0, 0, 0, 0, 0, 0, 0.25, 0, 0, 0, 0, 0, 0, 0.06853891945200942, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}}'
+        ],
+        output='screen'
+    )
+
     return LaunchDescription([
         DeclareLaunchArgument(
             'use_sim_time',
@@ -24,5 +35,6 @@ def generate_launch_description():
                 'params_file': nav2_params,
                 'use_sim_time': LaunchConfiguration('use_sim_time')
             }.items()
-        )
+        ),
+        initial_pose
     ])
