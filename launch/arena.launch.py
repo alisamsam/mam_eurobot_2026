@@ -71,7 +71,7 @@ def generate_launch_description():
 
     beacons = [
         # y = -1.55 (bord bas)
-        {'name': 'beaconB1', 'file': 'beacons/beaconB.sdf', 'x':  0.95, 'y': -1.55, 'z': 0.5},
+        #{'name': 'beaconB1', 'file': 'beacons/beaconB.sdf', 'x':  0.95, 'y': -1.55, 'z': 0.5},
         {'name': 'beaconB2', 'file': 'beacons/beaconB.sdf', 'x': -0.95, 'y': -1.55, 'z': 0.5},
         {'name': 'beaconY1', 'file': 'beacons/beaconY.sdf', 'x':  0.0,  'y': -1.55, 'z': 0.5},
 

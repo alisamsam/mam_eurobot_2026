@@ -24,6 +24,9 @@ USER $USERNAME
 RUN sudo apt update && \
     sudo apt-get install -y ros-${ROS_DISTRO}-ros-gz
 
+# Install ros2_control and controllers
+RUN sudo apt-get install -y ros-${ROS_DISTRO}-ros2-control ros-${ROS_DISTRO}-ros2-controllers ros-${ROS_DISTRO}-gazebo-ros2-control
+
 # Create workspace so that user own this directory
 RUN mkdir -p /home/$USERNAME/eurobot_2026_ws/src
 WORKDIR /home/$USERNAME/eurobot_2026_ws

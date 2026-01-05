@@ -16,7 +16,7 @@ ros2 launch mam_eurobot_2026 arena.launch.py gazebo_headless:=true launch_rviz:=
   ```bash
   ros2 launch mam_eurobot_2026 arena.launch.py launch_lidar:=true
   ```
-- **SLAM (nécessite lidar) :**
+- **SLAM :**
   ```bash
   ros2 launch mam_eurobot_2026 arena.launch.py launch_slam:=true launch_lidar:=true
   ```
@@ -99,7 +99,7 @@ ros2 run ros_gz_bridge parameter_bridge \
   ```
 - Rentrer dans le terminal :
   ```powershell
-  docker exec -it trusting_greider bash (windows vscode)
+  docker exec -it quizzical_einstein bash (windows vscode)
   ```
 - lancer Keyctrl via powershell
   /usr/local/python/current/bin/python /workspaces/mam_eurobot_2026/mam_eurobot_2

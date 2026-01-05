@@ -7,7 +7,13 @@ package_name = 'mam_eurobot_2026'
 setup(
     name=package_name,
     version='0.0.1',
-    packages=find_packages(exclude=['test']),
+    packages=[
+        'mam_eurobot_2026',
+        'mam_eurobot_2026.Move',
+        'mam_eurobot_2026.navigation',
+        'mam_eurobot_2026.Perception',
+        'mam_eurobot_2026.Task_Planner'
+    ],
     data_files=[
         ('share/ament_index/resource_index/packages', ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
@@ -27,7 +33,8 @@ setup(
             'key_ctrl    = mam_eurobot_2026.Move.key_ctrl:main',     
             'half_spin   = mam_eurobot_2026.Move.half_spin:main',
             'cam_view    = mam_eurobot_2026.Perception.cam_view:main',
-            'auto_move   = mam_eurobot_2026.Move.auto_move:main', 
+            'auto_move   = mam_eurobot_2026.Move.auto_move:main',
+            'test_movement = mam_eurobot_2026.test_movement:main',
         ],
     },
 )

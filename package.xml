@@ -13,6 +13,7 @@
   <depend>rclcpp</depend>
   <depend>rclpy</depend>
   <depend>geometry_msgs</depend>
+  <depend>xacro</depend>
 
   <exec_depend>slam_toolbox</exec_depend>
   <exec_depend>ros_gz_bridge</exec_depend>
@@ -20,6 +21,12 @@
   <exec_depend>rviz2</exec_depend>
   <exec_depend>ros_gz_sim</exec_depend>
 
+  <!--  Controller  -->
+  <depend>ros2_control</depend>
+  <depend>ros2_controllers</depend>
+  <depend>gazebo_ros2_control</depend>
+  <depend>controller_manager</depend>
+  <depend>mecanum_drive_controller</depend>
 
 
   <test_depend>ament_lint_auto</test_depend> 
