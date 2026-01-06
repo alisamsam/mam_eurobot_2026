@@ -32,7 +32,7 @@ setup(
             'py_test     = mam_eurobot_2026.Move.py_test:main',
             'key_ctrl    = mam_eurobot_2026.Move.key_ctrl:main',     
             'half_spin   = mam_eurobot_2026.Move.half_spin:main',
-            'cam_view    = mam_eurobot_2026.Perception.cam_view:main',
+            'aruco_perception = mam_eurobot_2026.Perception.cam_view:main',
             'auto_move   = mam_eurobot_2026.Move.auto_move:main',
             'test_movement = mam_eurobot_2026.test_movement:main',
         ],
