@@ -107,4 +107,11 @@ ros2 run ros_gz_bridge parameter_bridge \
 
 - goal pose
    ros2 action send_goal /navigate_to_pose nav2_msgs/action/NavigateToPose \
-  '{pose: {header: {frame_id: "map"}, pose: {position: {x: 1.0, y: 1.0, z: 0.0}, orientation: {w: 1.0}}}}'
+  '{pose: {header: {frame_id: "map"}, pose: {position: {x: 1.0, y: 1.0, z: 0.0}, orientation: {w: 1.0}}}}
+  '
+  
+  implement the imu to control the drifting 
+  import mecanum wheels visual 
+
+  use a wrapped camera technic, changer l'orientation avant de detecter avec opencv 
+  

@@ -1,0 +1,10 @@
+digraph G {
+"simple_robot/odom" -> "simple_robot/chassis"[label=" Broadcaster: default_authority\nAverage rate: 51.923\nBuffer length: 0.52\nMost recent transform: 95.14\nOldest transform: 94.62\n"];
+"map" -> "simple_robot/odom"[label=" Broadcaster: default_authority\nAverage rate: 22.0\nBuffer length: 0.5\nMost recent transform: 95.6\nOldest transform: 95.1\n"];
+"simple_robot/chassis" -> "simple_robot/base_scan"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"simple_robot/base_scan" -> "simple_robot/base_scan/hls_lfcd_lds"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1768846651.438142"[ shape=plaintext ] ;
+}->"map";
+}

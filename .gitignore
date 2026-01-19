@@ -2,3 +2,14 @@ build/
 log/
 build/
 log/
+.vscode/browse.vc.db
+.vscode/browse.vc.db-shm
+build/CMakeFiles/CMakeOutput.log
+build/mam_eurobot_2026/cmake_args.last
+build/mam_eurobot_2026/colcon_command_prefix_build.sh.env
+build/mam_eurobot_2026/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/mam_eurobot_2026
+build/Testing/TAG
+install/mam_eurobot_2026/lib/mam_eurobot_2026/cam_view
+install/mam_eurobot_2026/local/lib/python3.10/dist-packages/mam_eurobot_2026/Perception/__pycache__/cam_view.cpython-310.pyc
+log/latest_build
+build/Testing/TAG

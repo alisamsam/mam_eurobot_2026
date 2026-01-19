@@ -10,91 +10,110 @@
     </light>
 
     <gravity>0 0 -9.81</gravity>
-
     <physics type="ode">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1</real_time_factor>
     </physics>
 
-    <plugin filename="libignition-gazebo-physics-system.so"
-            name="ignition::gazebo::systems::Physics"/>
-    <plugin filename="libignition-gazebo-user-commands-system.so"
-            name="ignition::gazebo::systems::UserCommands"/>
-    <plugin filename="libignition-gazebo-scene-broadcaster-system.so"
-            name="ignition::gazebo::systems::SceneBroadcaster"/>
-
-    <!-- NEW: nécessaire pour que les caméras fonctionnent -->
-    <plugin filename="libignition-gazebo-rendering-system.so"
-            name="ignition::gazebo::systems::Rendering"/>
-    <plugin filename="libignition-gazebo-sensors-system.so"
-            name="ignition::gazebo::systems::Sensors">
-      <!-- essaie d'abord ogre2 ; si erreurs renderer, mets "ogre" -->
+    <plugin filename="libignition-gazebo-physics-system.so" name="ignition::gazebo::systems::Physics"/>
+    <plugin filename="libignition-gazebo-user-commands-system.so" name="ignition::gazebo::systems::UserCommands"/>
+    <plugin filename="libignition-gazebo-scene-broadcaster-system.so" name="ignition::gazebo::systems::SceneBroadcaster"/>
+    <plugin filename="libignition-gazebo-rendering-system.so" name="ignition::gazebo::systems::Rendering"/>
+    <plugin filename="libignition-gazebo-sensors-system.so" name="ignition::gazebo::systems::Sensors">
       <render_engine>ogre2</render_engine>
     </plugin>
 
-    <!-- === Static corner camera (left_cam) x est l'axe sur le point focale === -->
     <model name="left_corner_cam">
       <static>true</static>
       <pose>0.950 -1.550 1.05 0 0.6981 2.2309</pose>
-
       <link name="link">
-        <inertial>
-          <mass>0.01</mass>
-          <inertia>
-            <ixx>1e-6</ixx><iyy>1e-6</iyy><izz>1e-6</izz>
-            <ixy>0</ixy><ixz>0</ixz><iyz>0</iyz>
-          </inertia>
-        </inertial>
-
         <visual name="body">
           <geometry><box><size>0.03 0.03 0.03</size></box></geometry>
           <material><diffuse>0.2 0.2 0.2 1</diffuse></material>
         </visual>
-
         <sensor name="left_corner_cam_sensor" type="camera">
           <always_on>true</always_on>
           <update_rate>15</update_rate>
           <visualize>true</visualize>
           <camera>
-            <horizontal_fov>1.047</horizontal_fov> <!-- ~60° -->
-            <image>
-              <width>1280</width>
-              <height>1280</height>
-              <format>RGB_INT8</format>
-            </image>
-            <clip>
-              <near>0.05</near>
-              <far>50.0</far>
-            </clip>
+            <horizontal_fov>1.047</horizontal_fov>
+            <image><width>1280</width><height>1280</height><format>RGB_INT8</format></image>
+            <clip><near>0.05</near><far>50.0</far></clip>
           </camera>
           <topic>left_cam/image_raw</topic>
         </sensor>
       </link>
     </model>
 
-
     <model name="ground_plane">
       <static>true</static>
       <link name="link">
-        <collision name="collision">
-          <geometry><plane><normal>0 0 1</normal></plane></geometry>
-        </collision>
+        <collision name="collision"><geometry><plane><normal>0 0 1</normal></plane></geometry></collision>
         <visual name="visual">
-          <geometry>
-            <plane><normal>0 0 1</normal><size>20 20</size></plane>
-          </geometry>
-          <material>
-            <ambient>0.8 0.8 0.8 1</ambient>
-            <diffuse>0.2 0.2 0.2 1</diffuse>
-            <specular>0.8 0.8 0.8 1</specular>
-          </material>
+          <geometry><plane><normal>0 0 1</normal><size>20 20</size></plane></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient><diffuse>0.2 0.2 0.2 1</diffuse></material>
         </visual>
       </link>
     </model>
 
     <include>
-      <uri>file://models/mat</uri>
+      <uri>model://mat</uri>
       <pose>0 0 0 0 0 0</pose>
+      <static>true</static>
+    </include>
+
+    <include><uri>model://crate</uri><name>crate1</name><pose>-0.675 -1.30 0.05 0 3.1415 1.5708</pose></include>
+    <include><uri>model://crate</uri><name>crate2</name><pose>-0.625 -1.30 0.05 0 0 1.5708</pose></include>
+    <include><uri>model://crate</uri><name>crate3</name><pose>-0.575 -1.30 0.05 0 3.1415 1.5708</pose></include>
+    <include><uri>model://crate</uri><name>crate4</name><pose>-0.525 -1.30 0.05 0 0 1.5708</pose></include>
+    <include><uri>model://crate</uri><name>crate5</name><pose>0.125 -1.30 0.05 0 0 1.5708</pose></include>
+    <include><uri>model://crate</uri><name>crate6</name><pose>0.175 -1.30 0.05 0 0 1.5708</pose></include>
+    <include><uri>model://crate</uri><name>crate7</name><pose>0.225 -1.30 0.05 0 3.1415 1.5708</pose></include>
+    <include><uri>model://crate</uri><name>crate8</name><pose>0.275 -1.30 0.05 0 3.1415 1.5708</pose></include>
+    
+    <include><uri>model://crate</uri><name>crate9</name><pose>-0.2 -0.275 0.05 0 0 0</pose></include>
+    <include><uri>model://crate</uri><name>crate10</name><pose>-0.2 -0.325 0.05 0 3.1415 0</pose></include>
+    <include><uri>model://crate</uri><name>crate11</name><pose>-0.2 -0.375 0.05 0 0 0</pose></include>
+    <include><uri>model://crate</uri><name>crate12</name><pose>-0.2 -0.425 0.05 0 3.1415 0</pose></include>
+    
+    <include><uri>model://crate</uri><name>crate13</name><pose>-0.2 0.275 0.05 0 0 0</pose></include>
+    <include><uri>model://crate</uri><name>crate14</name><pose>-0.2 0.325 0.05 0 3.1415 0</pose></include>
+    <include><uri>model://crate</uri><name>crate15</name><pose>-0.2 0.375 0.05 0 3.1415 0</pose></include>
+    <include><uri>model://crate</uri><name>crate16</name><pose>-0.2 0.425 0.05 0 0 0</pose></include>
+    
+    <include><uri>model://crate</uri><name>crate17</name><pose>-0.825 -0.325 0.05 0 3.1415 0</pose></include>
+    <include><uri>model://crate</uri><name>crate18</name><pose>-0.825 -0.375 0.05 0 3.1415 0</pose></include>
+    <include><uri>model://crate</uri><name>crate19</name><pose>-0.825 -0.425 0.05 0 0 0</pose></include>
+    <include><uri>model://crate</uri><name>crate20</name><pose>-0.825 -0.475 0.05 0 0 0</pose></include>
+
+    <include>
+      <uri>file://models/beacons/beaconB.sdf</uri>
+      <name>beaconB2</name>
+      <pose>-0.95 -1.55 0.5 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>file://models/beacons/beaconY.sdf</uri>
+      <name>beaconY1</name>
+      <pose>0.0 -1.55 0.5 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>file://models/beacons/beaconB.sdf</uri>
+      <name>beaconB3</name>
+      <pose>0.0 1.55 0.5 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>file://models/beacons/beaconY.sdf</uri>
+      <name>beaconY2</name>
+      <pose>-0.95 1.55 0.5 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>file://models/beacons/beaconY.sdf</uri>
+      <name>beaconY3</name>
+      <pose>0.95 1.55 0.5 0 0 0</pose>
     </include>
 
   </world>

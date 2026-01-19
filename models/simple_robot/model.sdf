@@ -22,7 +22,6 @@
       </visual>
 
       <visual name="aruco_tag"> 
-        <!-- z augmenté pour qu'il soit au-dessus du châssis -->
         <pose>0 0 0.0255 0 0 0</pose>
         <cast_shadows>false</cast_shadows>
         <geometry>
@@ -50,6 +49,7 @@
       </collision>
     </link>
 
+    <!-- ROUE AVANT GAUCHE -->
     <link name="left_front_wheel">
       <pose relative_to="chassis">0.06 0.06 0 -1.5707 0 0</pose>
       <inertial>
@@ -73,13 +73,17 @@
           <friction>
             <ode>
               <mu>1.0</mu>
-              <mu2>1.0</mu2>
+              <mu2>0.2</mu2>
+              <fdir1>1 0 0</fdir1>
+              <slip1>0.0</slip1>
+              <slip2>0.0</slip2>
             </ode>
           </friction>
         </surface>
       </collision>
     </link>
 
+    <!-- ROUE ARRIERE GAUCHE -->
     <link name="left_rear_wheel">
       <pose relative_to="chassis">-0.06 0.06 0 -1.5707 0 0</pose>
       <inertial>
@@ -103,13 +107,17 @@
           <friction>
             <ode>
               <mu>1.0</mu>
-              <mu2>1.0</mu2>
+              <mu2>0.2</mu2>
+              <fdir1>1 0 0</fdir1>
+              <slip1>0.0</slip1>
+              <slip2>0.0</slip2>
             </ode>
           </friction>
         </surface>
       </collision>
     </link>
 
+    <!-- ROUE AVANT DROITE -->
     <link name="right_front_wheel">
       <pose relative_to="chassis">0.06 -0.06 0 -1.5707 0 0</pose>
       <inertial>
@@ -133,13 +141,17 @@
           <friction>
             <ode>
               <mu>1.0</mu>
-              <mu2>1.0</mu2>
+              <mu2>0.2</mu2>
+              <fdir1>1 0 0</fdir1>
+              <slip1>0.0</slip1>
+              <slip2>0.0</slip2>
             </ode>
           </friction>
         </surface>
       </collision>
     </link>
 
+    <!-- ROUE ARRIERE DROITE -->
     <link name="right_rear_wheel">
       <pose relative_to="chassis">-0.06 -0.06 0 -1.5707 0 0</pose>
       <inertial>
@@ -163,7 +175,10 @@
           <friction>
             <ode>
               <mu>1.0</mu>
-              <mu2>1.0</mu2>
+              <mu2>0.2</mu2>
+              <fdir1>1 0 0</fdir1>
+              <slip1>0.0</slip1>
+              <slip2>0.0</slip2>
             </ode>
           </friction>
         </surface>
@@ -285,7 +300,6 @@
 
     <!-- LiDAR -->
     <link name="base_scan">
-      <!-- position du boîtier LiDAR par rapport au modèle -->
       <pose relative_to="chassis">0 0 0.10 0 0 0</pose>
 
       <inertial>
@@ -296,7 +310,6 @@
         </inertia>
       </inertial>
 
-      <!-- VISUAL: cylindre Ø36mm x 13mm -->
       <visual name="lidar_visual">
         <pose>0 0 0 0 0 0</pose>
         <geometry>
@@ -311,7 +324,6 @@
         </material>
       </visual>
 
-      <!-- COLLISION (même géométrie) -->
       <collision name="lidar_collision">
         <geometry>
           <cylinder>
@@ -321,7 +333,6 @@
         </geometry>
       </collision>
 
-      <!-- Capteur LiDAR (ray) côté GZ -->
       <sensor name="hls_lfcd_lds" type="gpu_lidar">
         <pose>0 0 0.010 0 0 0</pose>
         <always_on>1</always_on>

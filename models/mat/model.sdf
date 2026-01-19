@@ -35,7 +35,7 @@
       <collision name="platform_collision">
         <pose>0.775 0.0 0.031 0 0 0</pose>
         <geometry>
-          <box><size>0.45 1.8 0.055</size></box>
+          <box><size>0.45 1.8 0.555</size></box> <!--actually the z size is 0.055 m -->
         </geometry>
         <surface>
           <friction><ode><mu>0.9</mu><mu2>0.9</mu2></ode></friction>
@@ -45,7 +45,7 @@
       <visual name="platform_visual">
         <pose>0.775 0.0 0.031 0 0 0</pose>
         <geometry>
-          <box><size>0.45 1.8 0.055</size></box>
+          <box><size>0.45 1.8 0.555</size></box> <!-- same thing here -->
         </geometry>
         <material>
           <diffuse>0.8 0.8 0.8 1</diffuse>
