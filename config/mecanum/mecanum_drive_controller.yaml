@@ -12,8 +12,8 @@ controller_manager:
 mecanum_drive_controller:
   ros__parameters:
     use_stamped_vel: false # Important pour teleop simple
-    base_frame_id: "chassis"
-    odom_frame_id: "odom"
+    base_frame_id: "simple_robot/chassis"
+    odom_frame_id: "simple_robot/odom"
     enable_odom_tf: true
     
     # Noms des joints (Doivent correspondre EXACTEMENT au URDF)

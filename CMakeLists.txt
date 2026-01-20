@@ -31,6 +31,7 @@ install(DIRECTORY launch DESTINATION share/${PROJECT_NAME})
 install(DIRECTORY worlds DESTINATION share/${PROJECT_NAME})
 install(DIRECTORY models DESTINATION share/${PROJECT_NAME})
 install(DIRECTORY config DESTINATION share/${PROJECT_NAME})
+install(FILES my_arena_map.yaml my_arena_map.pgm DESTINATION share/${PROJECT_NAME})
 
 # Index ament + package.xml
 install(FILES package.xml DESTINATION share/${PROJECT_NAME})

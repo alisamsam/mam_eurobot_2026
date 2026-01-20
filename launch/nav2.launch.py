@@ -1,3 +1,4 @@
+from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -6,19 +7,9 @@ import os
 
 def generate_launch_description():
     nav2_bringup_dir = '/opt/ros/humble/share/nav2_bringup'
-    map_yaml = '/workspaces/mam_eurobot_2026/mymap.yaml'
-    nav2_params = '/workspaces/mam_eurobot_2026/config/nav2/nav2_params.yaml'
-
-    from launch.actions import ExecuteProcess
-
-    initial_pose = ExecuteProcess(
-        cmd=[
-            'ros2', 'topic', 'pub', '--once', '/initialpose',
-            'geometry_msgs/msg/PoseWithCovarianceStamped',
-            '{header: {frame_id: "map"}, pose: {pose: {position: {x: 1.0, y: 2.0, z: 0.0}, orientation: {z: 0.0, w: 1.0}}, covariance: [0.25, 0, 0, 0, 0, 0, 0, 0.25, 0, 0, 0, 0, 0, 0, 0.06853891945200942, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}}'
-        ],
-        output='screen'
-    )
+    pkg_share = get_package_share_directory('mam_eurobot_2026')
+    map_yaml = os.path.join(pkg_share, 'my_arena_map.yaml')
+    nav2_params = os.path.join(pkg_share, 'config', 'nav2', 'nav2_params.yaml')
 
     return LaunchDescription([
         DeclareLaunchArgument(
@@ -35,6 +26,5 @@ def generate_launch_description():
                 'params_file': nav2_params,
                 'use_sim_time': LaunchConfiguration('use_sim_time')
             }.items()
-        ),
-        initial_pose
+        )
     ])
