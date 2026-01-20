@@ -1,0 +1,7 @@
+gripper_controller:
+  ros__parameters:
+    command_topic: /gripper/command
+    open_position: 0.04
+    closed_position: 0.0
+    publish_rate_hz: 10.0
+    start_open: true

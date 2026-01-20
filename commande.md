@@ -113,5 +113,9 @@ ros2 run ros_gz_bridge parameter_bridge \
   implement the imu to control the drifting 
   import mecanum wheels visual 
 
-  use a wrapped camera technic, changer l'orientation avant de detecter avec opencv 
+  use a wrapped camera technic, changer l'orientation de l'output image avant de proceder a la detection avec opencv 
+
+  ros2 action send_goal /navigate_to_pose nav2_msgs/action/NavigateToPose "{pose: {header: {frame_id: map}, pose: {position: {x: -0.1, y: -0.410, z: 0.0}, orientation: {w: 1.0}}}}"
   
+
+  for the next session i need to implement the gripper, make a video of crate catching, and stategy, 

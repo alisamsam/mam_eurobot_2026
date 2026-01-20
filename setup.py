@@ -35,6 +35,8 @@ setup(
             'aruco_perception = mam_eurobot_2026.Perception.cam_view:main',
             'auto_move   = mam_eurobot_2026.Move.auto_move:main',
             'test_movement = mam_eurobot_2026.test_movement:main',
+            'main_strategy = mam_eurobot_2026.Task_Planner.main_strategy:main',
+            'gripper_controller = mam_eurobot_2026.Move.gripper_controller:main',
         ],
     },
 )
